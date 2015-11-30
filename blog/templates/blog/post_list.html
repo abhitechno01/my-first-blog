@@ -7,8 +7,9 @@
 		<div>
 			<h1><a href="">Django Girls Blog</a></h1>			
 		</div>
+		
 
-		<div>
+			<!--
 			<h2><a href="">My First Blog</a></h2>
 			<p>published: 29|11|2015, 23:33</p>
 			<p>C:\Users\Name\djangogirls> C:\Python34\python -m venv myvenv
@@ -28,8 +29,15 @@
         	The settings.py file contains the configuration of your website.
 			Remember when we talked about a mail carrier checking where to deliver a letter? urls.py file contains a list of patterns used by urlresolver.
 			</p>
-		</div>
-		
+			-->
+			{% for post in posts %}
+				<div>
+					<h1><a href=""> {{ post.title }} </a></h1>
+					<p>published: {{ post.published_date }} </p>
+					<p> {{ post.text|linebreaks }} </p>
+				</div>
+			{% endfor %}
+		<!--
 		<div>
 			<h2><a href="">My Sceond Blog</a></h2>
 			<p>published: 29|11|2015, 23:46</p>
@@ -45,7 +53,11 @@
 				STATIC_URL = '/static/'
 				STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 			</p>
+
 		</div>
+		-->
+
+
 
 	</body>
 </html>
