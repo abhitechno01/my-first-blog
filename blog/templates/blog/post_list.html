@@ -1,63 +1,13 @@
-<html>
-	<head>
-	<title> Abhishek's Blog </title>
-	</head>
+{% extends 'blog/base.html' %}
 
-	<body>
-		<div>
-			<h1><a href="">Django Girls Blog</a></h1>			
-		</div>
-		
-
-			<!--
-			<h2><a href="">My First Blog</a></h2>
-			<p>published: 29|11|2015, 23:33</p>
-			<p>C:\Users\Name\djangogirls> C:\Python34\python -m venv myvenv
-			Start your virtual environment by running: C:\Users\Name\djangogirls> myvenv\Scripts\activate
-			On Windows; don't forget to add the period (or dot) . at the end:
-			(myvenv) C:\Users\Name\djangogirls> django-admin startproject mysite .
-			django-admin.py is a script that will create the directories and files for you. You should now have a directory structure which looks like this:
-
-			djangogirls
-			├───manage.py
-			└───mysite
-        			settings.py
-        			urls.py
-        			wsgi.py
-        			__init__.py
-        	manage.py is a script that helps with management of the site. With it we will be able to start a web server on our computer without installing anything else, amongst other things.
-        	The settings.py file contains the configuration of your website.
-			Remember when we talked about a mail carrier checking where to deliver a letter? urls.py file contains a list of patterns used by urlresolver.
-			</p>
-			-->
-			{% for post in posts %}
-				<div>
-					<h1><a href=""> {{ post.title }} </a></h1>
-					<p>published: {{ post.published_date }} </p>
-					<p> {{ post.text|linebreaks }} </p>
-				</div>
-			{% endfor %}
-		<!--
-		<div>
-			<h2><a href="">My Sceond Blog</a></h2>
-			<p>published: 29|11|2015, 23:46</p>
-			<p>
-				Let's make some changes in mysite/settings.py. Open the file using the code editor you installed earlier.
-
-				It would be nice to have the correct time on our website. Go to the wikipedia timezones list and copy your relevant time zone (TZ). (eg. Europe/Berlin )
-
-				In settings.py, find the line that contains TIME_ZONE and modify it to choose your own timezone:
-				TIME_ZONE = 'Europe/Berlin'
-				Modifying "Europe/Berlin" as appropriate
-				We'll also need to add a path for static files (we'll find out all about static files and CSS later in the tutorial). Go down to the end of the file, and just underneath the STATIC_URL entry, add a new one called STATIC_ROOT:
-				STATIC_URL = '/static/'
-				STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-			</p>
-
-		</div>
-		-->
-
-
-
-	</body>
-</html>
+{% block content %}
+    {% for post in posts %}
+        <div class="post">
+            <div class="date">
+                {{ post.published_date }}
+            </div>
+            <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+            <p>{{ post.text|linebreaks }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}
